@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		vscode.window.showQuickPick(getShells(context), options).then((item) => {
 			if (!item) return;
-			if (!item.label) return;
+			if (!item.shell) return;
 
 			child_process.exec(formatCommand(item.shell.command, rootPath, context));
 		});
