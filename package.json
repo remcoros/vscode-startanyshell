@@ -1,0 +1,91 @@
+{
+	"name": "startanyshell",
+	"description": "Start any shell",
+	"displayName": "Start any shell",
+	"version": "0.1.0",
+	"publisher": "remcoros",
+	"author": {
+		"name": "Remco Ros",
+		"email": "remcoros@live.nl",
+		"url": "github.com/remcoros"
+	},
+	"engines": {
+		"vscode": "^0.10.x"
+	},
+	"categories": [
+		"Other"
+	],
+	"galleryBanner": {
+		"color": "#5c2d91",
+		"theme": "dark"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/remcoros/vscode-startanyshell.git"
+	},
+	"activationEvents": [
+		"*"
+	],
+	"keywords": [
+		"cmd",
+		"shell",
+		"powershell",
+		"command prompt"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "startanyshell.startShell",
+				"title": "Start shell"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "StartAnyShell configuration",
+			"properties": {
+				"startanyshell.shells": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"description": {
+								"type": "string"
+							},
+							"command": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"description",
+							"command"
+						]
+					},
+					"default": [
+						{
+							"description": "Windows Command Prompt",
+							"command": "start cmd /k \"cd /d %path%\""
+						},
+						{
+							"description": "Windows Powershell",
+							"command": "start powershell.exe -noexit -command \"cd \"%path%\"\""
+						},
+						{
+							"description": "Developer Command Prompt for VS2015",
+							"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
+						}
+					],
+					"description": "Shell commands, see default for examples."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"typescript": "^1.6.2",
+		"vscode": "0.10.x"
+	}
+}
