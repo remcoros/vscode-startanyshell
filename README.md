@@ -1,6 +1,4 @@
-# StartAnyShell
-
-## About
+# Start any shell
 
 Start any shell from Visual Studio Code, configurable from your user settings.
 
@@ -25,7 +23,11 @@ Open your user settings and copy the shell commands you would like to use, or cr
 	"startanyshell.shells": [
 		{
 			"description": "Windows Command Prompt",
-			"command": "start cmd /k \"cd /d %path%\""
+			"command": "start \"\" cmd /k \"cd /d %path%\""
+		},
+		{
+			"description": "Git Bash 2",
+			"command": "start \"\" cmd /c \"cd /d %path% && \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i\""
 		},
 		{
 			"description": "Windows Powershell",
@@ -33,7 +35,7 @@ Open your user settings and copy the shell commands you would like to use, or cr
 		},
 		{
 			"description": "Developer Command Prompt for VS2015",
-			"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
+			"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"%HOMEDRIVE%:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
 		}
 	]
 ```

@@ -2,7 +2,7 @@
 	"name": "startanyshell",
 	"displayName": "Start any shell",
 	"description": "Start any shell from VS Code, configurable from user settings.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"publisher": "remcoros",
 	"author": {
 		"name": "Remco Ros",
