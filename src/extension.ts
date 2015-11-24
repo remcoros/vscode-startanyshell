@@ -12,26 +12,31 @@ interface ShellCommand {
 export function activate(context: vscode.ExtensionContext) {
 	console.log('StartAnyShell is now active.');
 
-	var launchShell = vscode.commands.registerCommand("startanyshell.startShell", () => {
-		let doc = vscode.window.activeTextEditor.document;
+	const startShell = vscode.commands.registerCommand("startanyshell.startShell", () => {
 		let rootPath = vscode.workspace.rootPath;
 		
 		// TODO: option to open at workspace level or file level
-		if (!rootPath && !doc.isUntitled) rootPath = path.dirname(doc.uri.fsPath);
-		if (!rootPath) rootPath = ".";
+		if (!rootPath) {
+			let editor = vscode.window.activeTextEditor;
+			if (editor && editor.document && editor.document.uri) {
+				rootPath = path.dirname(editor.document.uri.fsPath);
+			}
+		};
+	
+		if (!rootPath || rootPath == "") rootPath = ".";
 		
 		let options: vscode.QuickPickOptions = { matchOnDescription: false, placeHolder: "Launch any shell in: " + rootPath };
-		let items = [];
 
-		vscode.window.showQuickPick(getShells(context), options).then((item) => {
-			if (!item) return;
-			if (!item.shell) return;
+		Promise.resolve(vscode.window.showQuickPick(getShells(context), options))
+			.then((item) => {
+				if (!item) return;
+				if (!item.shell) return;
 
-			child_process.exec(formatCommand(item.shell.command, rootPath, context));
-		});
-
-		context.subscriptions.push(launchShell);
+				child_process.exec(formatCommand(item.shell.command, rootPath, context));
+			});
 	});
+
+	context.subscriptions.push(startShell);
 }
 
 function getShells(context: vscode.ExtensionContext) {

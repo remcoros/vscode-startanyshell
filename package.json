@@ -2,7 +2,7 @@
 	"name": "startanyshell",
 	"displayName": "Start any shell",
 	"description": "Start any shell from VS Code, configurable from user settings.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "remcoros",
 	"author": {
 		"name": "Remco Ros",
@@ -24,7 +24,7 @@
 		"url": "https://github.com/remcoros/vscode-startanyshell.git"
 	},
 	"activationEvents": [
-		"*"
+		"onCommand:startanyshell.startShell"
 	],
 	"keywords": [
 		"cmd",
@@ -32,7 +32,7 @@
 		"powershell",
 		"command prompt"
 	],
-	"main": "./out/src/extension",
+	"main": "./out/extension",
 	"contributes": {
 		"commands": [
 			{
@@ -76,7 +76,7 @@
 						},
 						{
 							"description": "Developer Command Prompt for VS2015",
-							"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"%HOMEDRIVE%:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
+							"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
 						}
 					],
 					"description": "Shell commands, see default for examples."
