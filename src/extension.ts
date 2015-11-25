@@ -1,6 +1,6 @@
 'use strict';
 
-import {window, workspace, commands, ExtensionContext, QuickPickItem, QuickPickOptions} from 'vscode';
+import {window, workspace, commands, ExtensionContext, QuickPickItem, QuickPickOptions, WorkspaceConfiguration} from 'vscode';
 import * as child_process from 'child_process';
 import * as path from 'path';
 
@@ -17,26 +17,27 @@ export function activate(context: ExtensionContext) {
     console.log('StartAnyShell is now active.');
 
     const startShell = commands.registerCommand("startanyshell.startShell", () => {
+        let config = workspace.getConfiguration('startanyshell');
+        let editor = window.activeTextEditor;
         let rootPath = workspace.rootPath;
-		
-        // TODO: option to open at workspace level or file level
-        if (!rootPath) {
-            let editor = window.activeTextEditor;
-            if (editor && editor.document && editor.document.uri) {
-                rootPath = path.dirname(editor.document.uri.fsPath);
-            }
-        };
+        let alwaysOpenRoot = config.get<boolean>("openworkspaceroot", true);
+
+        if ((!alwaysOpenRoot || !rootPath) && editor && editor.document && editor.document.uri) {
+            rootPath = path.dirname(editor.document.uri.fsPath);
+        }
 
         if (!rootPath || rootPath == "") rootPath = ".";
 
         let options: QuickPickOptions = { matchOnDescription: false, placeHolder: "Launch any shell in: " + rootPath };
 
-        Promise.resolve(window.showQuickPick(getShells(context), options))
+        Promise.resolve(window.showQuickPick(getShells(config), options))
             .then((item) => {
                 if (!item) return;
                 if (!item.shell) return;
 
-                child_process.exec(formatCommand(item.shell.command, rootPath, context));
+                child_process.exec(formatCommand(item.shell.command, rootPath, context), {
+                    cwd: rootPath
+                });
             })
             .catch(error => {
                 window.showErrorMessage(error.message || error);
@@ -46,13 +47,12 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(startShell);
 }
 
-function getShells(context: ExtensionContext): Promise<ShellQuickPickItem[]> {
+function getShells(config: WorkspaceConfiguration): Promise<ShellQuickPickItem[]> {
     return new Promise(resolve=> {
-        let section = workspace.getConfiguration('startanyshell');
-        let shells: ShellCommand[] = section.get<ShellCommand[]>("shells", []);
+        let shells: ShellCommand[] = config.get<ShellCommand[]>("shells", []);
 
         resolve(shells.map(shell => {
-            return { label: shell.description, description: shell.command, context, shell: shell };
+            return { label: shell.description, description: shell.command, shell: shell };
         }));
     });
 }

@@ -2,7 +2,7 @@
     "name": "startanyshell",
     "displayName": "Start any shell",
     "description": "Start any shell from VS Code, configurable from user settings.",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "publisher": "remcoros",
     "author": {
         "name": "Remco Ros",
@@ -19,7 +19,7 @@
         "color": "#5c2d91",
         "theme": "dark"
     },
-    "icon": "images/icon.png",    
+    "icon": "images/icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/remcoros/vscode-startanyshell.git"
@@ -39,16 +39,23 @@
             {
                 "command": "startanyshell.startShell",
                 "title": "Start shell"
-            }            
+            }
         ],
-        "keybindings": [{
-            "key": "ctrl+shift+c",
-            "command": "startanyshell.startShell"            
-        }],
+        "keybindings": [
+            {
+                "key": "ctrl+shift+c",
+                "command": "startanyshell.startShell"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "StartAnyShell configuration",
             "properties": {
+                "startanyshell.openworkspaceroot": {
+                    "description": "Always start at the currently opened workspace folder.",
+                    "type": "boolean",
+                    "default": true                    
+                },
                 "startanyshell.shells": {
                     "type": "array",
                     "items": {
@@ -69,22 +76,22 @@
                     "default": [
                         {
                             "description": "Windows Command Prompt",
-                            "command": "start cmd /k \"cd /d %path%\""
+                            "command": "start %comspec% /k"
                         },
                         {
                             "description": "Git Bash 2",
-                            "command": "start cmd /c \"cd /d %path% && \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i\""
+                            "command": "start %comspec% /c \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i"
                         },
                         {
                             "description": "Windows Powershell",
-                            "command": "start powershell.exe -noexit -command \"cd \"%path%\"\""
+                            "command": "start powershell.exe -noexit"
                         },
                         {
                             "description": "Developer Command Prompt for VS2015",
-                            "command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
+                            "command": "start \"Developer Command Prompt for VS2015\" %comspec% /k \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\""
                         }
                     ],
-                    "description": "Shell commands, see default for examples."
+                    "description": "Shell commands, see default for examples. The variable %path% will be replaced with the current working directory or file path."
                 }
             }
         }

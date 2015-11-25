@@ -3,4 +3,4 @@ node_js:
   - "4.1"
   - "4.0"
   - "0.12"
-sudo: false
+script: node ./node_modules/vscode/bin/compile
