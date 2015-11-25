@@ -23,22 +23,22 @@ Open your user settings and copy the shell commands you would like to use, or cr
 ```json
 	// Shell commands, see default for examples.
 	"startanyshell.shells": [
-		{
-			"description": "Windows Command Prompt",
-			"command": "start \"\" cmd /k \"cd /d %path%\""
-		},
-		{
-			"description": "Git Bash 2",
-			"command": "start \"\" cmd /c \"cd /d %path% && \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i\""
-		},
-		{
-			"description": "Windows Powershell",
-			"command": "start powershell.exe -noexit -command \"cd \"%path%\"\""
-		},
-		{
-			"description": "Developer Command Prompt for VS2015",
-			"command": "start \"Developer Command Prompt for VS2015\" cmd /k \"cd /d %path% & \"%HOMEDRIVE%:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\"\""
-		}
+        {
+            "description": "Windows Command Prompt",
+            "command": "start \"%description%\" /WAIT %comspec%"
+        },
+        {
+            "description": "Git Bash 2",
+            "command": "start \"%description%\" %comspec% /C \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i"
+        },
+        {
+            "description": "Windows Powershell",
+            "command": "start \"%description%\" powershell.exe -noexit"
+        },
+        {
+            "description": "Developer Command Prompt for VS2015",
+            "command": "start \"%description%\" /WAIT \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\""
+        }
 	]
 ```
 
@@ -47,4 +47,5 @@ Open your user settings and copy the shell commands you would like to use, or cr
 Open the command palette (F1 / Ctrl+Shift+P), and look for 'Start shell'. Or use the shortcut 'ctrl+shift+c'.
 
 ## License
+
 [MIT](LICENSE)

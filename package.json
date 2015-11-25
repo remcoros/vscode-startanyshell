@@ -2,7 +2,7 @@
     "name": "startanyshell",
     "displayName": "Start any shell",
     "description": "Start any shell from VS Code, configurable from user settings.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "publisher": "remcoros",
     "author": {
         "name": "Remco Ros",
@@ -20,10 +20,15 @@
         "theme": "dark"
     },
     "icon": "images/icon.png",
+    "homepage": "https://github.com/remcoros/vscode-startanyshell",
     "repository": {
         "type": "git",
         "url": "https://github.com/remcoros/vscode-startanyshell.git"
     },
+    "bugs": {
+        "url": "https://github.com/remcoros/vscode-startanyshell/issues"
+    },
+    "license": "SEE LICENSE IN LICENSE.txt",
     "activationEvents": [
         "onCommand:startanyshell.startShell"
     ],
