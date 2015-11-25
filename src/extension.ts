@@ -35,7 +35,7 @@ export function activate(context: ExtensionContext) {
                 if (!item) return;
                 if (!item.shell) return;
 
-                child_process.exec(formatCommand(item.shell.command, rootPath, context), {
+                child_process.exec(formatCommand(item.shell, rootPath, context), {
                     cwd: rootPath
                 });
             })
@@ -57,8 +57,9 @@ function getShells(config: WorkspaceConfiguration): Promise<ShellQuickPickItem[]
     });
 }
 
-function formatCommand(command: string, rootPath: string, context: ExtensionContext) {
-    return command
-        .replace('%path%', rootPath);
+function formatCommand(command: ShellCommand, rootPath: string, context: ExtensionContext) {
+    return command.command
+        .replace('%path%', rootPath)
+        .replace('%description%', command.description);
     // TODO: add more tokens or eval();
 }
