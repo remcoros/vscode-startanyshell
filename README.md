@@ -6,9 +6,11 @@ It will start in the currently opened folder, or when no folder is open, it will
  
 ## Usage 
 
+![Start any shell](images/screenshot.gif)
+
 For now, starting a shell is a two-step process:
 
-- Fire the 'Start Shell' command from the command palette (or bind a key to the command 'startanyshell.startShell')
+- Fire the 'Start Shell' command from the command palette (or use the default shortcut 'ctrl+shift+c')
 - Launch any of the predefined or custom shells (see configuration section below)
 
 > It is not possible (that I know of) for an extension to dynamically register a top-level command.
@@ -42,7 +44,7 @@ Open your user settings and copy the shell commands you would like to use, or cr
 
 ## Usage 
 
-Open the command palette (F1 / Ctrl+Shift+P), and look for 'Start shell'.
+Open the command palette (F1 / Ctrl+Shift+P), and look for 'Start shell'. Or use the shortcut 'ctrl+shift+c'.
 
 ## License
 [MIT](LICENSE)
