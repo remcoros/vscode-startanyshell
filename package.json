@@ -2,12 +2,12 @@
     "name": "startanyshell",
     "displayName": "Start any shell",
     "description": "Start any shell from VS Code, configurable from user settings.",
-    "version": "0.2.1",
+    "version": "0.2.3",
     "publisher": "remcoros",
     "author": {
         "name": "Remco Ros",
         "email": "remcoros@live.nl",
-        "url": "github.com/remcoros"
+        "url": "https://github.com/remcoros"
     },
     "engines": {
         "vscode": "^0.10.x"
@@ -43,7 +43,7 @@
         "commands": [
             {
                 "command": "startanyshell.startShell",
-                "title": "Start shell"
+                "title": "Start any shell"
             }
         ],
         "keybindings": [
@@ -85,7 +85,7 @@
                         },
                         {
                             "description": "Git Bash 2",
-                            "command": "start \"%description%\" %comspec% /C \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i"
+                            "command": "\"C:\\Program Files\\Git\\git-bash.exe\" \"--cd=%path%\""
                         },
                         {
                             "description": "Windows Powershell",
@@ -94,6 +94,10 @@
                         {
                             "description": "Developer Command Prompt for VS2015",
                             "command": "start \"%description%\" /WAIT \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\""
+                        },
+                        {
+                            "description": "Cmder",
+                            "command": "cmder.exe /start \"%path%\""
                         }
                     ],
                     "description": "Shell commands, see default for examples. The variable %path% will be replaced with the current working directory or file path."
@@ -106,7 +110,7 @@
         "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
     },
     "devDependencies": {
-        "typescript": "^1.6.2",
-        "vscode": "0.10.x"
+        "typescript": "^1.7.3",
+        "vscode": "^0.10.5"
     }
 }

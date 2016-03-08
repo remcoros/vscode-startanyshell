@@ -29,7 +29,7 @@ Open your user settings and copy the shell commands you would like to use, or cr
         },
         {
             "description": "Git Bash 2",
-            "command": "start \"%description%\" %comspec% /C \"%HOMEDRIVE%\\Program Files\\Git\\git-cmd.exe\" --no-cd --command=usr/bin/bash.exe -l -i"
+            "command": "\"C:\\Program Files\\Git\\git-bash.exe\" \"--cd=%path%\""
         },
         {
             "description": "Windows Powershell",
@@ -38,8 +38,12 @@ Open your user settings and copy the shell commands you would like to use, or cr
         {
             "description": "Developer Command Prompt for VS2015",
             "command": "start \"%description%\" /WAIT \"%HOMEDRIVE%\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VsDevCmd.bat\""
+        },
+        {
+            "description": "Cmder",
+            "command": "cmder.exe /start \"%path%\""
         }
-	]
+    ]
 ```
 
 ## Usage 
