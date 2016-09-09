@@ -52,13 +52,11 @@ function startAnyShell(): void {
         });
 }
 
-function getShells(config: WorkspaceConfiguration): Promise<IShellQuickPickItem[]> {
-    return new Promise(resolve => {
-        let shells: IShellCommand[] = config.get<IShellCommand[]>('shells', []);
+function getShells(config: WorkspaceConfiguration): IShellQuickPickItem[] {
+    let shells: IShellCommand[] = config.get<IShellCommand[]>('shells', []);
 
-        resolve(shells.map(shell => {
-            return { label: shell.description, description: shell.command, shell: shell };
-        }));
+    return shells.map(shell => {
+        return { label: shell.description, description: shell.command, shell: shell };
     });
 }
 

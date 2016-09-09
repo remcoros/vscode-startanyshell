@@ -2,7 +2,7 @@
     "name": "startanyshell",
     "displayName": "Start any shell",
     "description": "Start any shell from VS Code, configurable from user settings.",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "publisher": "remcoros",
     "author": {
         "name": "Remco Ros",
@@ -10,7 +10,7 @@
         "url": "https://github.com/remcoros"
     },
     "engines": {
-        "vscode": "^0.10.x"
+        "vscode": "^1.5.x"
     },
     "categories": [
         "Other"
@@ -106,11 +106,12 @@
         }
     },
     "scripts": {
+        "pkgvars": "node ./node_modules/vscode/bin/install",
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
         "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
     },
     "devDependencies": {
         "typescript": "^1.7.3",
-        "vscode": "^0.10.5"
+        "vscode": "^0.11.18"
     }
 }
