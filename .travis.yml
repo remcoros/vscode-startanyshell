@@ -1,6 +1,8 @@
 language: node_js
 node_js:
+  - "6.1"
+  - "5.11"
   - "4.1"
   - "4.0"
   - "0.12"
-script: node ./node_modules/vscode/bin/compile
+script: node run pkgvars | node ./node_modules/vscode/bin/compile
