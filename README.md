@@ -32,6 +32,10 @@ Open your user settings and copy the shell commands you would like to use, or cr
             "command": "\"C:\\Program Files\\Git\\git-bash.exe\" \"--cd=%path%\""
         },
         {
+            "description": "WSL Bash",
+            "command": "start \"WSL Bash\" bash.exe"
+        },
+        {
             "description": "Windows Powershell",
             "command": "start \"%description%\" powershell.exe -noexit"
         },
